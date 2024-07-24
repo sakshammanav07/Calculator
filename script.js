@@ -1,19 +1,21 @@
 let buttons = document.querySelectorAll(".btn");
 let display = document.querySelector(".display");
+let numberString = "";
 
-let string = "";
-
-Array.from(buttons).forEach((button) => {
+buttons.forEach((button) => {
   button.addEventListener("click", (e) => {
-    if (e.target.value == "=") {
-      string = eval(string);
-      display.value = string;
-    } else if (e.target.value == "C") {
-      string = "";
-      display.value = string;
+    if (e.target.value === "=") {
+      numberString = eval(numberString); // evaluate the numberString
+      if (numberString === undefined) {
+        numberString = "";
+      }
+      display.value = numberString; // displaying the result
+    } else if (e.target.value === "C") {
+      numberString = ""; //empty the string
+      display.value = numberString;
     } else {
-      string += e.target.value;
-      display.value = string;
+      numberString += e.target.value;
+      display.value = numberString;
     }
   });
 });
